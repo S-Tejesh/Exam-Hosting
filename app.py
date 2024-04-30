@@ -10,7 +10,7 @@ from ultralytics import YOLO
 
 app = Flask(__name__)
 app.secret_key = 'something'
-client = MongoClient('mongodb://localhost:27017/')  # Update the connection string accordingly
+client = MongoClient('mongodb+srv://admin:5R9g0GELT2C5REnA@cluster0.qc15eve.mongodb.net/')  # Update the connection string accordingly
 db = client['Integrity-Watch']  # Replace 'mydatabase' with your database name
 users_collection = db['users']
 exams_collection = db['exams']
