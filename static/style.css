@@ -1,0 +1,215 @@
+/* Resetting default margin and padding */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #DFF5FF;
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
+/* Navigation styles */
+nav {
+    font-family: 'Arial', sans-serif; /* Fancy font */
+    background-color: #007bff;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 40px; /* Set logo height as desired */
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Georgia', serif; /* Fancy font */
+}
+/* Content styles */
+.content {
+    padding:10px;
+    text-align: center;
+}
+.catchy-box {
+    background-color: #FAFAFE;
+    padding: 40px;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom:60px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+.catchy-content h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.catchy-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.sub-caption {
+    font-style: italic;
+}
+
+/* Styles for image gallery */
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.image-gallery img {
+    height:200px;
+    width: 200px;
+    margin: 0 10px;
+}
+.image-item {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-item img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.image-item h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #007bff; /* Change color as desired */
+    font-family: 'Playfair Display', cursive;
+}
+
+
+.features-box {
+    background-color: #FAFAFE;
+    padding: 40px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom:60px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature {
+    margin-bottom: 20px;
+}
+.features-box h2 {
+    font-size: 28px;
+    width: 100%; /* Ensure heading takes full width */
+    text-align: center; /* Center the heading */
+    margin-bottom:50px;
+}
+.bullet {
+    display: inline-block;
+    width: 15px;
+    text-align: center;
+}
+.feature h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    display: inline;
+    margin-right: 8px;
+}
+
+.feature p {
+    font-size: 18px;
+    color: #444;
+}
+/* Rest of your styles */
+
+.bottom-box {
+    background-color: #007bff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: white;
+}
+
+.blue-box {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+}
+
+.blue-box p {
+    margin: 10px 0;
+}
+.process-box {
+    background-color: #FAFAFE;
+    padding: 40px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom:60px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the top */
+    flex-wrap: wrap; /* Allow flex items to wrap */
+}
+
+.process-box h2 {
+    font-size: 28px;
+    width: 100%; /* Ensure heading takes full width */
+    text-align: center; /* Center the heading */
+    margin-bottom:50px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(33.33% - 20px); /* Adjust the width of each step */
+    margin-bottom: 20px; /* Add margin between steps */
+    position: relative; /* Position step for arrow */
+}
+.step-content {
+    text-align: center;
+}
+
+.step-content img {
+    width: 125px; /* Adjust the width as needed */
+    height: 105px; /* Maintain aspect ratio */
+    margin-bottom: 10px;
+}
+.arrow-img {
+    width: 80px; /* Adjust the width of the arrow image */
+    height: 80px; /* Adjust the height of the arrow image */
+    margin-left:-50px;
+    margin-top:30px;
+}
+

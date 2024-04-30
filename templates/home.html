@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Integrity Watch - Home</title>
+    <style>
+        /* Navbar Styles */
+        nav {
+            background-color: #007bff;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .logo img {
+            height: 40px; /* Set logo height as desired */
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* Content Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #DFF5FF;
+            position: relative;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero-section {
+            background: linear-gradient(to bottom, #000080, #40e0d0);/* Gradient from blue to light gray */
+            color: #fff; /* Change text color to white */
+            text-align: center; /* Align text to the center */
+            padding: 100px 20px; /* Adjust padding as needed */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Arrange items vertically */
+            align-items: center; /* Center items horizontally */
+            max-width: 800px; /* Adjust width to match content */
+            margin: 40px auto; /* Center vertically */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .hero-section p {
+            font-size: 18px;
+            margin-right: 20px; /* Add right margin for spacing */
+        }
+
+        .hero-section p.additional-line {
+            font-style: italic;
+            font-size: 16px;
+            margin-right: 20px; /* Add right margin for spacing */
+        }
+
+        .hero-section img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        h2.welcome-heading {
+            color: #007bff; /* White color for the heading */
+            text-align: center; /* Center align the heading */
+            margin-bottom: 19.920px;
+            position: relative; /* Position relative for pseudo-element */
+        }
+
+        h2.welcome-heading::after {
+            content: ''; /* Create pseudo-element for styling */
+            display: block;
+            width: 200px; /* Adjust width as needed */
+            height: 4px; /* Adjust height as needed */
+            background-color: #32CD32; /* Darker shade of blue for the line */
+            position: absolute;
+            bottom: -7px; /* Adjust position as needed to align with text */
+            left: 50%; /* Align to the center */
+            transform: translateX(-50%); /* Center horizontally */
+        }
+        .process-box {
+    background-color: #FAFAFE;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.process-box:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+        }
+.process-box h2 {
+    width: 100%;
+    text-align: center;
+}
+.steps-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 33%;
+    margin-bottom: 20px;
+}
+
+.step-content {
+    text-align: center;
+    height: 180px;
+}
+
+.step-content img {
+    width: 125px;
+    height: 105px;
+    margin-bottom: 10px;
+}
+
+.arrow-img {
+    width: 80px;
+    height: 80px;
+}
+.downward-arrow-container {
+    width:70%;
+    display: flex;
+    justify-content: flex-end; /* Align container to the end of the line */
+    margin-top: 40px; /* Adjust as needed */
+    margin-bottom:40px;
+}
+
+.downward-arrow-container .arrow-img {
+    margin-left: auto; /* Reset left margin */
+    margin-right: -30px; /* Adjust as needed */
+    transform: rotate(90deg);
+}
+.arrow-img.reverse{
+    transform: rotate(180deg);
+}
+        section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Add margin bottom to create space between sections */
+        }
+        section:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+        }
+        section h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Use a professional font stack */
+    font-size: 24px; /* Adjust font size as needed */
+    color: #333; /* Set the color of the heading */
+    margin-bottom: 15px; /* Add some bottom margin for spacing */
+}
+section li {
+    margin-bottom: 10px; /* Add bottom margin to create space between list items */
+}
+        ol, ul {
+            padding-left: 20px;
+        }
+        .faq-section {
+            max-width: 800px;
+            margin: 40px auto 40px; /* Center and add bottom margin */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .faq-section:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+        }
+        .faq-section h3 {
+            font-family: 'Arial', sans-serif; /* Change font family */
+            color: #007bff; /* Blue color for heading */
+            margin-bottom: 15px;
+        }
+
+        .faq-question {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .faq-question p {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .faq-answer {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .faq-answer:before {
+            content: "\2022"; /* Bullet symbol */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #007bff; /* Blue color for bullet */
+        }
+
+        .faq-answer p {
+            margin-left: 15px;
+        }
+
+        .faq-question:before, .faq-answer:before {
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow to bullet */
+            border-radius: 50%; /* Make bullet circular */
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/photo.jpg') }}" alt="Integrity Watch Logo">
+            <h1>Integrity Watch</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('exams') }}">Exams</a></li>
+            <li><a href="{{ url_for('logout') }}">LogOut</a></li>
+        </ul>
+    </nav>
+    <h2 class="welcome-heading">Welcome to Integrity Watch!</h2>
+    <div class="hero-section">
+        <p>Your trusted partner for secure online exams</p>
+        <p class="additional-line">Join us today and experience the difference!</p>
+        <img src="{{ url_for('static', filename='images/student.jpg') }}" alt="Student Image">
+    </div>
+
+    <div class="process-box">
+    <h2>How Our Website Works?</h2>
+    <div class="steps-container">
+        <!-- Step 1 -->
+        <div class="step">
+            <div class="step-content">
+                <img src="{{ url_for('static', filename='images/register.jpeg') }}" alt="Step 1 Image">
+                <h3>Sign Up:</h3>
+                <p>Create your account and register for your exams.</p>
+            </div>
+        </div>
+        <img class="arrow-img" src="{{ url_for('static', filename='images/arrow.jpg') }}" alt="Arrow Image">
+        <!-- Step 2 -->
+        <div class="step">
+            <div class="step-content">
+                <img src="{{ url_for('static', filename='images/takeexam.png') }}" alt="Step 2 Image">
+                <h3>Prepare:</h3>
+                <p>Familiarize yourself with our platform and exam guidelines.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Container for Downward Arrow -->
+    <div class="downward-arrow-container">
+        <img class="arrow-img downward" src="{{ url_for('static', filename='images/arrow.jpg') }}" alt="Arrow Image">
+    </div>
+    <div class="steps-container">
+        <!-- Step 3 -->
+        <div class="step">
+            <div class="step-content">
+                <img src="{{ url_for('static', filename='images/result.jpg') }}" alt="Step 3 Image">
+                <h3>Receive Results:</h3>
+                <p>Receive your exam results promptly and securely.</p>
+            </div>
+        </div>
+        <img class="arrow-img reverse" src="{{ url_for('static', filename='images/arrow.jpg') }}" alt="Arrow Image">
+        <!-- Step 4 -->
+        <div class="step">
+            <div class="step-content">
+                <img src="{{ url_for('static', filename='images/photo.jpg') }}" alt="Step 4 Image">
+                <h3>Take Your Exam:</h3>
+                <p>Start your exam at the scheduled time, with our AI proctor monitoring the process.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="faq-section">
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-question">
+            <p>Q: What is exam proctoring?</p>
+            <div class="faq-answer">
+                <p>Exam proctoring is the process of monitoring students during exams to ensure academic integrity and prevent cheating.</p>
+            </div>
+        </div>
+        <div class="faq-question">
+            <p>Q: How does online exam proctoring work?</p>
+            <div class="faq-answer">
+                <p>Online exam proctoring uses technology such as webcams and screen sharing to monitor students remotely during exams.</p>
+            </div>
+        </div>
+        <div class="faq-question">
+            <p>Q: Can I take an exam at any time with exam proctoring?</p>
+            <div class="faq-answer">
+                <p>Exam proctoring services may offer flexible scheduling options, but specific availability may vary depending on the provider.</p>
+            </div>
+        </div>
+        <div class="faq-question">
+            <p>Q: What are the benefits of using exam proctoring services?</p>
+            <div class="faq-answer">
+                <p>Benefits of using exam proctoring services include ensuring a fair testing environment, deterring cheating, and providing convenience for remote learners.</p>
+            </div>
+        </div>
+    </div>
+    <section>
+        <h2>Benefits of Using Our Service:</h2>
+        <ul>
+            <li><strong>Eliminate Cheating:</strong> Our proctoring system ensures a level playing field for all students, eliminating cheating.</li>
+            <li><strong>Convenience:</strong> Focus solely on your exam, while we handle the technical aspects of proctoring.</li>
+            <li><strong>Peace of Mind:</strong> With our secure and reliable platform, you can focus on achieving your academic goals without worrying about exam integrity.</li>
+        </ul>
+    </section>
+    <footer>
+        <p>Take control of your academic success and ace your exams with confidence!</p>
+    </footer>
+</body>
+</html>

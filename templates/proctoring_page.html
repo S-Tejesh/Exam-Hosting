@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proctoring Page</title>
+    <style>
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0aeccb;
+    margin: 0;
+    padding: 0;
+}
+
+.exam-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.exam-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #5755FE;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.exam-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #86A7FC;
+    border-radius: 2px;
+}
+
+.question {
+    margin-bottom: 40px;
+    background-color: #08eff754;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.question:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.question p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border-bottom: 5px solid #3d6cb9;
+    padding-bottom: 10px;
+}
+
+.options label {
+    display: block;
+    font-size: 18px;
+    color: #666;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.options label:hover {
+    background-color: #dee1ec;
+}
+
+.options label:hover {
+    transform: translateX(5px);
+}
+
+
+
+.submit-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 24px;
+    font-size: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Timer styles */
+.timer-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    color: #fff;
+    font-size: 24px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+    <span id="timer">00:00:00</span>
+</div>
+
+<div class="exam-container">
+    <h1 class="exam-title">Exam : {{ exam.title }}</h1>
+
+    <form id="examForm" action="/submit_exam/{{ exam._id }}" method="post">
+        {% for question in exam.questions %}
+            <div class="question">
+                <p>Question {{ loop.index }}: {{ question.question }}</p>
+                {% set counter = loop.index %}
+                <div class="options">
+                    {% for option in question.options %}
+                        <label>
+                            <input type="radio" name="question{{ counter }}" value="{{ option }}">
+                            {{ option }}
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        <button class="submit-btn" type="submit">Submit Exam</button>
+    </form>
+</div>
+
+    <script>
+    // Lock down browser features and enable full-screen mode
+    var exam_id = '{{ exam._id }}';
+    var proctoringTriggered = false; // Flag to track whether proctoring has been triggered
+
+    document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM content loaded');
+    if (!proctoringTriggered) { // Check if proctoring has not been triggered
+        fetch(`/trigger_proctoring/${exam_id}`, {
+            method: 'POST',
+        })
+        .then(() => {
+            proctoringTriggered = true; // Set the flag to true after proctoring is triggered
+        })
+        .catch(error => {
+            console.error('Error triggering proctoring:', error);
+        });
+    }
+});
+    function lockDownAndFullScreen() {
+        // Enter full-screen mode
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+            document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+            document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+            document.documentElement.msRequestFullscreen();
+        }
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "F12" || (e.ctrlKey && e.key === "U")) {
+                e.preventDefault();
+            }
+        });
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM content loaded');
+        // Lock down browser and enable full-screen mode
+        lockDownAndFullScreen();
+    });
+        let timerElement = document.getElementById('timer');
+        let totalTime = {{exam.duration}}*60; //
+        let minutes, seconds;
+
+        function updateTimer() {
+            minutes = Math.floor(totalTime / 60);
+            seconds = totalTime % 60;
+            timerElement.textContent = pad(minutes) + ':' + pad(seconds);
+            if (totalTime > 0) {
+                totalTime--;
+            } else {
+                // Submit exam automatically when time is up
+                document.getElementById('examForm').submit();
+            }
+        }
+
+        function pad(value) {
+            return value < 10 ? '0' + value : value;
+        }
+
+        // Update timer every second
+        setInterval(updateTimer, 1000);
+    // Disable reload button click
+
+// Disable F5 key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'F5') {
+        e.preventDefault();
+    }
+});
+window.onbeforeunload = function() {
+    return null;
+};
+
+window.onload = function() {
+    // Check if the page is reloading due to the user confirming to leave
+    if(performance.navigation.type == 1) {
+        // If the page is reloading, submit the form
+        document.getElementById('examForm').submit();
+    }
+};
+
+/*document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === 'hidden') {
+        // Tab has lost focus (user switched to another tab or minimized the browser)
+        document.getElementById('examForm').submit();
+        // Add your code here to handle the tab switch
+    }
+});*/
+    </script>
+</body>
+</html>
